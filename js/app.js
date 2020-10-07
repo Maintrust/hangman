@@ -25,7 +25,7 @@ const appInit = (function (GameCtrl, UICtrl) {
     // document
     //   .getElementById(`${keyboardWrapperId}`)
     //   .addEventListener("click", typeLetter);
-    document.querySelectorAll(".button").forEach((elem) => {
+    document.querySelectorAll(".letter").forEach((elem) => {
       elem.addEventListener("click", typeLetter);
     });
   }
