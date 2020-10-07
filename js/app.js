@@ -17,7 +17,7 @@ const appInit = (function (GameCtrl, UICtrl) {
     };
 
     /// shows alert if device orientation is changed
-    window.addEventListener("orientationchange", preventCtrl.deviceOrientation);
+    // window.addEventListener("orientationchange", preventCtrl.deviceOrientation);
 
     document.addEventListener("keydown", checkKey);
     UICtrl.form.addEventListener("submit", initCustomGame);
@@ -117,6 +117,7 @@ const appInit = (function (GameCtrl, UICtrl) {
     if (GameCtrl.getTries() === 0 || GameCtrl.getLettersLeft() === 0) {
       return;
     }
+    console.log(e.target);
     const event = new Event("keydown");
     if (e.target.localName === "div") {
       console.log(e.target.firstElementChild.textContent);
