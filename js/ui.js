@@ -1,6 +1,7 @@
 class UI {
   constructor() {
     this.body = document.body;
+    this.documentWrapper = document.querySelector(".wrapper");
     this.input = document.getElementById("input");
     this.button = document.querySelector("button");
     this.form = document.getElementById("form");
@@ -10,6 +11,13 @@ class UI {
     this.wrongLettersField = "wrong-letters-field";
     this.endGameMessageWin = "end-game-msg end-game-win";
     this.endGameMessageLost = "end-game-msg end-game-lost";
+    this.keyboardWrapperId = "keyboard";
+
+    this.alphabet = [
+      ["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ"],
+      ["ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "ё"],
+      ["я", "ч", "с", "м", "и", "т", "ь", "б", "ю"],
+    ];
   }
 
   initGame(length) {
@@ -196,6 +204,21 @@ class UI {
     div.className = this.endGameMessageLost;
     div.innerHTML = `<div><h4>${message}</h4><button onclick="(()=>location.reload())()">Play again?</button></div>`;
     this.body.appendChild(div);
+  }
+
+  initKeyboard() {
+    const keyboardWrapper = document.createElement("div");
+    keyboardWrapper.id = this.keyboardWrapperId;
+    for (let x = 0; x < this.alphabet.length; ++x) {
+      const row = document.createElement("div");
+      row.className = `row-${x + 1}`;
+      for (let y = 0; y < this.alphabet[x].length; ++y) {
+        row.innerHTML += `<div><span>${this.alphabet[x][y]}</span></div>`;
+      }
+      keyboardWrapper.appendChild(row);
+    }
+    this.documentWrapper.appendChild(keyboardWrapper);
+    return this.keyboardWrapperId;
   }
 }
 

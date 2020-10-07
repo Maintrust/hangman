@@ -21,6 +21,10 @@ const appInit = (function (GameCtrl, UICtrl) {
 
     document.addEventListener("keydown", checkKey);
     UICtrl.form.addEventListener("submit", initCustomGame);
+    const keyboardWrapperId = UICtrl.initKeyboard();
+    document
+      .getElementById(`${keyboardWrapperId}`)
+      .addEventListener("click", typeLetter);
   }
 
   function buttonSwitcher() {
@@ -38,12 +42,13 @@ const appInit = (function (GameCtrl, UICtrl) {
       const length = GameCtrl.initGame(e.target.firstElementChild.value);
       //console.log(length);
       UICtrl.initGame(length);
-      UICtrl.clearInput();
-      UICtrl.input.blur();
+
       buttonSwitcher();
     } else {
       console.log("NOT CYRILLIC");
     }
+    UICtrl.clearInput();
+    UICtrl.input.blur();
     e.preventDefault();
   }
 
@@ -82,7 +87,7 @@ const appInit = (function (GameCtrl, UICtrl) {
             UICtrl.typeLetter(letter, pos);
             GameCtrl.subtractionlettersLeft();
             if (GameCtrl.getLettersLeft() === 0) {
-              UICtrl.showMessage("Sorry, but u a looser");
+              UICtrl.showMessage("CONGRATS!!!");
             }
           }
 
@@ -103,6 +108,21 @@ const appInit = (function (GameCtrl, UICtrl) {
         //console.log("cyrillic");
         return true;
       }
+    }
+  }
+  function typeLetter(e) {
+    if (GameCtrl.getTries() === 0 || GameCtrl.getLettersLeft() === 0) {
+      return;
+    }
+    const event = new Event("keydown");
+    if (e.target.localName === "div") {
+      console.log(e.target.firstElementChild.textContent);
+      event.key = e.target.firstElementChild.textContent;
+      checkKey(event);
+    } else if (e.target.localName === "span") {
+      console.log(e.target.textContent);
+      event.key = e.target.textContent;
+      checkKey(event);
     }
   }
 
