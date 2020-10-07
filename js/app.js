@@ -1,6 +1,6 @@
-import { preventCtrl } from "./_preventOrientation.js";
-import GameCtrl from "./game.js";
-import { UICtrl } from "./ui.js";
+import { preventCtrl } from "js/_preventOrientation.js";
+import GameCtrl from "js/game.js";
+import { UICtrl } from "js/ui.js";
 
 const appInit = (function (GameCtrl, UICtrl) {
   function initEventListeners(UICtrl) {
