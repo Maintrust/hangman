@@ -14,9 +14,10 @@ class UI {
     this.keyboardWrapperId = "keyboard";
 
     this.alphabet = [
-      ["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ"],
-      ["ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "ё"],
+      ["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х"],
+      ["ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э"],
       ["я", "ч", "с", "м", "и", "т", "ь", "б", "ю"],
+      ["ъ", "ё"],
     ];
   }
 
@@ -213,7 +214,11 @@ class UI {
       const row = document.createElement("div");
       row.className = `row-${x + 1}`;
       for (let y = 0; y < this.alphabet[x].length; ++y) {
-        row.innerHTML += `<div class='letter'><span>${this.alphabet[x][y]}</span></div>`;
+        if (x == 3) {
+          row.innerHTML += `<div class='letter' style='width:45px; justify-self: center'><span>${this.alphabet[x][y]}</span></div>`;
+        } else {
+          row.innerHTML += `<div class='letter'><span>${this.alphabet[x][y]}</span></div>`;
+        }
       }
       keyboardWrapper.appendChild(row);
     }
