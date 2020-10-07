@@ -1,4 +1,4 @@
-import { preventCtrl } from "./_preventOrientation.js";
+import { preventCtrl } from "./preventOrientation.js";
 import GameCtrl from "./game.js";
 import { UICtrl } from "./ui.js";
 
