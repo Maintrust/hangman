@@ -15,4 +15,4 @@ export const preventCtrl = (function () {
 })();
 
 // window.addEventListener("orientationchange", deviceOrientation);
-preventCtrl.deviceOrientation(); // проверяем ориентацию при загрузке страницы
+// preventCtrl.deviceOrientation(); // проверяем ориентацию при загрузке страницы
