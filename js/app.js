@@ -22,9 +22,12 @@ const appInit = (function (GameCtrl, UICtrl) {
     document.addEventListener("keydown", checkKey);
     UICtrl.form.addEventListener("submit", initCustomGame);
     const keyboardWrapperId = UICtrl.initKeyboard();
-    document
-      .getElementById(`${keyboardWrapperId}`)
-      .addEventListener("click", typeLetter);
+    // document
+    //   .getElementById(`${keyboardWrapperId}`)
+    //   .addEventListener("click", typeLetter);
+    document.querySelectorAll(".button").forEach((elem) => {
+      elem.addEventListener("click", typeLetter);
+    });
   }
 
   function buttonSwitcher() {

@@ -213,7 +213,7 @@ class UI {
       const row = document.createElement("div");
       row.className = `row-${x + 1}`;
       for (let y = 0; y < this.alphabet[x].length; ++y) {
-        row.innerHTML += `<div><span>${this.alphabet[x][y]}</span></div>`;
+        row.innerHTML += `<div class='letter'><span>${this.alphabet[x][y]}</span></div>`;
       }
       keyboardWrapper.appendChild(row);
     }
