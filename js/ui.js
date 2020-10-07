@@ -42,7 +42,7 @@ class UI {
 
     // рисуем виселицу и поле для неправильны букв
     const svgHtml = `<svg
-    width="200"
+    width="150"
     height="250"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
