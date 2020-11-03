@@ -1,4 +1,4 @@
-import { preventCtrl } from "./preventOrientation.js";
+// import { preventCtrl } from "./preventOrientation.js";
 import GameCtrl from "./game.js";
 import { UICtrl } from "./ui.js";
 
@@ -9,25 +9,23 @@ const appInit = (function (GameCtrl, UICtrl) {
 
     // flag input focus/not focus
     UICtrl.input.onfocus = function () {
-      // console.log(this);
       this.focused = true;
     };
     UICtrl.input.onblur = function () {
       this.focused = false;
     };
 
-    /// shows alert if device orientation is changed
-    // window.addEventListener("orientationchange", preventCtrl.deviceOrientation);
-
     document.addEventListener("keydown", checkKey);
     UICtrl.form.addEventListener("submit", initCustomGame);
-    const keyboardWrapperId = UICtrl.initKeyboard();
-    // document
-    //   .getElementById(`${keyboardWrapperId}`)
-    //   .addEventListener("click", typeLetter);
-    document.querySelectorAll(".letter").forEach((elem) => {
-      elem.addEventListener("click", typeLetter);
-    });
+    let isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(
+      navigator.userAgent
+    );
+    if (isMobile) {
+      UICtrl.initKeyboard();
+      document.querySelectorAll(".letter").forEach((elem) => {
+        elem.addEventListener("click", typeLetter);
+      });
+    }
   }
 
   function buttonSwitcher() {
@@ -43,7 +41,6 @@ const appInit = (function (GameCtrl, UICtrl) {
   function initCustomGame(e) {
     if (checkKey(e)) {
       const length = GameCtrl.initGame(e.target.firstElementChild.value);
-      //console.log(length);
       UICtrl.initGame(length);
 
       buttonSwitcher();
@@ -71,15 +68,11 @@ const appInit = (function (GameCtrl, UICtrl) {
         letter = letter.toLowerCase();
         /// Проверяем, вводили ли букву раньше
         if (!GameCtrl.isLetterTypedBefore(letter)) {
-          //console.log("cyrillic");
           const letterPosition = GameCtrl.getLetterPosition(letter); // возвращается массив позиций (так как одинаковых букв может быть несколько)
-          //console.log(letterPosition);
           // работаем с массивом позиций
           if (letterPosition.length === 0) {
-            //console.log("Wrong Letter");
             UICtrl.typeWrongLetter(letter);
             GameCtrl.subtractionTries();
-            //console.log("Tries left: " + GameCtrl.getTries());
             if (GameCtrl.getTries() === 0) {
               UICtrl.showMessage("Sorry, but u a looser");
               return;
@@ -99,7 +92,6 @@ const appInit = (function (GameCtrl, UICtrl) {
           //console.log("This letter was typed before");
         }
       } else {
-        //console.log("NOT CYRILLIC!!!11");
         return false;
       }
     } else if (e.type === "submit") {
@@ -108,7 +100,7 @@ const appInit = (function (GameCtrl, UICtrl) {
           alert("Too long");
           return false;
         }
-        //console.log("cyrillic");
+
         return true;
       }
     }
@@ -134,7 +126,6 @@ const appInit = (function (GameCtrl, UICtrl) {
     init() {
       initEventListeners(UICtrl);
       const length = GameCtrl.initGame();
-      //console.log(length);
       UICtrl.initGame(length);
     },
   };

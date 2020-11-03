@@ -215,7 +215,7 @@ class UI {
       row.className = `row-${x + 1}`;
       for (let y = 0; y < this.alphabet[x].length; ++y) {
         if (x == 3) {
-          row.innerHTML += `<div class='letter' style='width:45px; justify-self: center'><span>${this.alphabet[x][y]}</span></div>`;
+          row.innerHTML += `<div class='letter' style='width:45px;'><span>${this.alphabet[x][y]}</span></div>`;
         } else {
           row.innerHTML += `<div class='letter'><span>${this.alphabet[x][y]}</span></div>`;
         }

@@ -44,13 +44,10 @@ const GameCtrl = (function () {
       let x = 0;
       let arr = [];
       do {
-        //console.log(x);
         x = word.indexOf(letter, x);
         if (x === -1) break;
         arr.push([word[x], x]);
         ++x;
-        // console.log(x);
-        // console.log(arr);
       } while (true);
       return arr;
     },
@@ -74,10 +71,6 @@ const GameCtrl = (function () {
     getLettersLeft() {
       return game.lettersLeft;
     },
-
-    // addWord(word) {
-    //   words.push(word);
-    // },
   };
 })();
 
